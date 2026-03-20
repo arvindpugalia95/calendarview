@@ -54,26 +54,21 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); heig
 .app.active { display: flex; }
 
 /* Top bar */
-.topbar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 8px 20px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; z-index: 30; min-height: 56px; }
+.topbar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 8px 20px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; z-index: 30; min-height: 56px; flex-wrap: wrap; }
 .topbar-brand { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; white-space: nowrap; }
 .topbar-brand span { color: var(--accent); }
 .topbar-sep { width: 1px; height: 28px; background: var(--border); margin: 0 4px; }
-
-/* Nav group */
 .nav-group { display: flex; align-items: center; gap: 4px; }
 .nav-btn { width: 34px; height: 34px; border-radius: 50%; border: none; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.15rem; color: var(--text-secondary); transition: background .15s; }
 .nav-btn:hover { background: var(--border-light); }
 .month-title { font-size: 1.05rem; font-weight: 600; min-width: 160px; text-align: center; }
 .today-btn { padding: 6px 18px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); font-family: var(--font); font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all .15s; color: var(--text); }
 .today-btn:hover { background: var(--border-light); }
-
-/* View toggle */
 .view-toggle { display: flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin-left: 8px; }
 .view-toggle button { padding: 6px 14px; border: none; background: var(--surface); font-family: var(--font); font-size: 0.78rem; font-weight: 600; cursor: pointer; color: var(--text-secondary); transition: all .15s; }
 .view-toggle button:not(:last-child) { border-right: 1px solid var(--border); }
 .view-toggle button.active { background: var(--accent-bg); color: var(--accent); }
 .view-toggle button:hover:not(.active) { background: var(--border-light); }
-
 .topbar-spacer { flex: 1; }
 .user-pill { background: var(--border-light); border-radius: 20px; padding: 5px 14px; font-size: 0.78rem; font-weight: 500; color: var(--text-secondary); white-space: nowrap; }
 .btn-link { padding: 6px 14px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); font-family: var(--font); font-size: 0.78rem; font-weight: 600; cursor: pointer; color: var(--text); text-decoration: none; transition: all .15s; }
@@ -81,17 +76,8 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); heig
 .btn-danger { color: var(--danger); border-color: var(--danger); }
 .btn-danger:hover { background: var(--danger-light); }
 
-/* ===== HOURS SUMMARY BAR ===== */
-.summary-bar { 
-    background: var(--surface); 
-    border-bottom: 1px solid var(--border); 
-    padding: 8px 20px; 
-    display: flex; 
-    align-items: center; 
-    gap: 20px; 
-    flex-shrink: 0;
-    overflow-x: auto;
-}
+/* ===== SUMMARY BAR ===== */
+.summary-bar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 8px 20px; display: flex; align-items: center; gap: 20px; flex-shrink: 0; overflow-x: auto; }
 .summary-item { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--text-secondary); white-space: nowrap; }
 .summary-val { font-family: var(--font-mono); font-weight: 600; font-size: 0.88rem; }
 .summary-val.blue { color: var(--accent); }
@@ -103,46 +89,49 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); heig
 
 /* ===== CALENDAR GRID ===== */
 .cal-wrap { flex: 1; overflow: hidden; display: flex; flex-direction: column; }
-
-/* Day header row */
 .day-header-row { display: flex; border-bottom: 1px solid var(--border); background: var(--surface); flex-shrink: 0; }
 .time-gutter-header { width: 64px; flex-shrink: 0; border-right: 1px solid var(--border-light); padding: 10px 4px; text-align: center; font-size: 0.68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
-.day-header { flex: 1; text-align: center; padding: 8px 4px 10px; cursor: default; }
+.day-header { flex: 1; text-align: center; padding: 8px 4px 10px; cursor: default; min-width: 0; }
 .day-header .day-name { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
 .day-header .day-num { font-size: 1.5rem; font-weight: 600; margin-top: 2px; width: 42px; height: 42px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; transition: background .15s; }
 .day-header.today .day-name { color: var(--accent); }
 .day-header.today .day-num { background: var(--accent); color: #fff; }
 .day-header .day-total { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
-
-/* Scrollable time grid */
 .time-grid-scroll { flex: 1; overflow-y: auto; overflow-x: hidden; }
 .time-grid { display: flex; position: relative; }
 .time-gutter { width: 64px; flex-shrink: 0; }
 .time-gutter-label { height: var(--hour-h); display: flex; align-items: flex-start; justify-content: flex-end; padding-right: 8px; font-size: 0.72rem; color: var(--text-muted); font-family: var(--font-mono); transform: translateY(-8px); }
 .day-columns { flex: 1; display: flex; position: relative; }
-.day-col { flex: 1; position: relative; border-right: 1px solid var(--border-light); min-height: calc(var(--hour-h) * 17); /* 6am-11pm */ }
+.day-col { flex: 1; position: relative; border-right: 1px solid var(--border-light); min-height: calc(var(--hour-h) * 17); }
 .day-col:last-child { border-right: none; }
-
-/* Hour lines */
 .hour-line { position: absolute; left: 0; right: 0; height: 1px; background: var(--border-light); pointer-events: none; z-index: 1; }
 .hour-line.half { background: var(--border-light); opacity: 0.5; }
-
-/* Current time indicator */
 .now-line { position: absolute; left: 0; right: 0; height: 2px; background: var(--danger); z-index: 15; pointer-events: none; }
 .now-dot { position: absolute; left: -5px; top: -4px; width: 10px; height: 10px; border-radius: 50%; background: var(--danger); }
-
-/* Drag selection */
 .drag-preview { position: absolute; left: 2px; right: 2px; background: var(--accent-light); border: 2px solid var(--accent); border-radius: 6px; opacity: 0.7; z-index: 10; pointer-events: none; display: none; min-height: 15px; }
-
-/* Plan blocks */
 .plan-block { position: absolute; left: 3px; right: 3px; border-radius: 6px; padding: 4px 8px; font-size: 0.75rem; overflow: hidden; cursor: pointer; z-index: 5; transition: box-shadow .15s, transform .1s; border-left: 4px solid; display: flex; flex-direction: column; }
 .plan-block:hover { box-shadow: var(--shadow-sm); transform: scale(1.01); z-index: 12; }
 .plan-block .pb-title { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.3; }
 .plan-block .pb-meta { font-size: 0.68rem; opacity: 0.75; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .plan-block .pb-time { font-family: var(--font-mono); font-size: 0.66rem; opacity: 0.7; }
-
-/* Locked column overlay */
 .day-col.locked::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent, transparent 5px, rgba(217,48,37,.03) 5px, rgba(217,48,37,.03) 10px); z-index: 2; pointer-events: none; }
+
+/* ===== TEAM VIEW ===== */
+.team-controls { display: none; padding: 12px 20px; background: var(--surface); border-bottom: 1px solid var(--border); flex-shrink: 0; align-items: center; gap: 12px; }
+.team-controls.active { display: flex; }
+.team-controls label { font-size: 0.78rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+.team-date-input { padding: 8px 12px; border: 1.5px solid var(--border); border-radius: 6px; font-family: var(--font); font-size: 0.88rem; outline: none; transition: border .2s, box-shadow .2s; }
+.team-date-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-light); }
+.team-stat { font-size: 0.82rem; color: var(--text-secondary); margin-left: 8px; }
+.team-stat b { color: var(--accent); font-family: var(--font-mono); }
+.team-loading { padding: 40px; text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+
+/* Team header - member names */
+.team-header-row { display: flex; border-bottom: 1px solid var(--border); background: var(--surface); flex-shrink: 0; }
+.team-member-header { flex: 1; text-align: center; padding: 10px 6px; min-width: 0; }
+.team-member-header .tm-name { font-size: 0.82rem; font-weight: 700; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.team-member-header .tm-hours { font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent); margin-top: 2px; }
+.team-member-header .tm-avatar { width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.82rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
 
 /* ===== MODAL ===== */
 .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.32); backdrop-filter: blur(3px); z-index: 100; align-items: flex-start; justify-content: center; padding: 60px 20px 20px; }
@@ -160,7 +149,6 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); heig
 .fi:focus, .fs:focus, .ft:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-light); }
 .ft { resize: vertical; min-height: 60px; }
 .fr2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.fr3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
 .time-display { padding: 9px 12px; background: var(--accent-bg); border-radius: 6px; font-family: var(--font-mono); font-size: 0.88rem; color: var(--accent); font-weight: 600; text-align: center; border: 1.5px solid var(--accent-light); }
 .modal-actions { display: flex; gap: 8px; justify-content: flex-end; padding-top: 10px; border-top: 1px solid var(--border-light); margin-top: 6px; }
 .mbtn { padding: 9px 20px; border-radius: 6px; font-family: var(--font); font-size: 0.85rem; font-weight: 600; cursor: pointer; border: 1px solid var(--border); background: var(--surface); color: var(--text); transition: all .15s; }
@@ -178,14 +166,14 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); heig
 .toast.err { background: var(--danger); color: #fff; }
 .toast.inf { background: var(--accent); color: #fff; }
 
-/* Responsive */
 @media (max-width: 768px) {
-    .topbar { padding: 6px 12px; gap: 6px; flex-wrap: wrap; }
+    .topbar { padding: 6px 12px; gap: 6px; }
     .month-title { font-size: .9rem; min-width: 120px; }
     .time-gutter, .time-gutter-header { width: 44px; }
     .day-header .day-num { font-size: 1.15rem; width: 34px; height: 34px; }
     .plan-block { font-size: .68rem; padding: 3px 5px; }
     .summary-bar { padding: 6px 12px; gap: 12px; }
+    .team-controls { flex-wrap: wrap; }
 }
 </style>
 </head>
@@ -210,7 +198,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); heig
         <div class="topbar-brand">📅 <span>Plan</span> Calendar</div>
         <div class="topbar-sep"></div>
         <button class="today-btn" id="todayBtn">Today</button>
-        <div class="nav-group">
+        <div class="nav-group" id="navGroup">
             <button class="nav-btn" id="prevBtn">‹</button>
             <span class="month-title" id="monthTitle"></span>
             <button class="nav-btn" id="nextBtn">›</button>
@@ -218,6 +206,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); heig
         <div class="view-toggle">
             <button id="viewWeek" class="active">Week</button>
             <button id="viewMonth">Month</button>
+            <button id="viewTeam">Team</button>
         </div>
         <div class="topbar-spacer"></div>
         <span class="user-pill" id="userPill"></span>
@@ -225,21 +214,26 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); heig
         <button class="btn-link btn-danger" id="logoutBtn">Logout</button>
     </div>
 
-    <!-- SUMMARY BAR -->
+    <!-- SUMMARY BAR (week/month) -->
     <div class="summary-bar" id="summaryBar">
         <div class="summary-item"><div class="summary-dot" style="background:var(--accent)"></div>This week: <span class="summary-val blue" id="sumWeek">0h</span></div>
+    </div>
+
+    <!-- TEAM CONTROLS (team view only) -->
+    <div class="team-controls" id="teamControls">
+        <label>📅 Select Date</label>
+        <input type="date" class="team-date-input" id="teamDate">
+        <span class="team-stat" id="teamStat"></span>
     </div>
 
     <!-- LOCK BANNER -->
     <div class="lock-banner" id="lockBanner"></div>
 
-    <!-- CALENDAR -->
-    <div class="cal-wrap">
-        <!-- Day headers -->
+    <!-- WEEK VIEW -->
+    <div class="cal-wrap" id="weekWrap">
         <div class="day-header-row" id="dayHeaderRow">
             <div class="time-gutter-header">GMT+5:30</div>
         </div>
-        <!-- Time grid scroll area -->
         <div class="time-grid-scroll" id="gridScroll">
             <div class="time-grid" id="timeGrid">
                 <div class="time-gutter" id="timeGutter"></div>
@@ -248,8 +242,21 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); heig
         </div>
     </div>
 
-    <!-- MONTH VIEW (hidden by default) -->
+    <!-- MONTH VIEW -->
     <div id="monthView" style="display:none; flex:1; overflow-y:auto; padding:0 20px 20px;"></div>
+
+    <!-- TEAM VIEW -->
+    <div id="teamWrap" style="display:none; flex:1; overflow:hidden; display:none; flex-direction:column;">
+        <div class="team-header-row" id="teamHeaderRow">
+            <div class="time-gutter-header">GMT+5:30</div>
+        </div>
+        <div class="time-grid-scroll" id="teamGridScroll">
+            <div class="time-grid" id="teamTimeGrid">
+                <div class="time-gutter" id="teamTimeGutter"></div>
+                <div class="day-columns" id="teamCols"></div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- PLAN MODAL -->
@@ -289,21 +296,17 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); heig
 'use strict';
 
 const GAS = 'https://script.google.com/macros/s/AKfycbzlKdHrNToeJrV9X6Z4bV_QC0rL9HzhW7i_QjFFEmM-Bmypbkf7aJrF1VWB0pM6TXo8/exec';
-const START_HOUR = 6; // 6 AM
-const END_HOUR = 23;  // 11 PM
-const HOURS_COUNT = END_HOUR - START_HOUR;
-const SLOT_H = 60; // px per hour
+const START_HOUR = 6, END_HOUR = 23, HOURS_COUNT = END_HOUR - START_HOUR, SLOT_H = 60;
 
-// State
 let user = null, role = null;
 let clients = [], projects = {}, admins = [];
-let plans = []; // { dateStr, client, project, activity, plannedHours, type, admin, startTime, endTime, status, planId, rowIndex }
-let weekStart = null; // Sunday
+let plans = [];
+let teamPlans = []; // all team plans for team view
+let weekStart = null;
 let lockDate = '', lockH = -1, lockM = -1, lockFmt = '', srvOffset = 0;
-let currentView = 'week'; // 'week' | 'month'
-let currentMonthYear = null; // for month view
+let currentView = 'week';
+let currentMonthYear = null;
 
-// Colors by client
 const PALETTE = [
     {bg:'#d2e3fc',bdr:'#1a73e8',tx:'#174ea6'}, {bg:'#ceead6',bdr:'#1e8e3e',tx:'#137333'},
     {bg:'#fce8e6',bdr:'#d93025',tx:'#a50e0e'}, {bg:'#fef7e0',bdr:'#f9ab00',tx:'#b06000'},
@@ -311,672 +314,395 @@ const PALETTE = [
     {bg:'#fce4ec',bdr:'#e91e63',tx:'#880e4f'}, {bg:'#e8eaf6',bdr:'#3f51b5',tx:'#283593'},
     {bg:'#fff9c4',bdr:'#f9a825',tx:'#e65100'}, {bg:'#f3e5f5',bdr:'#ab47bc',tx:'#6a1b9a'},
 ];
-let colorMap = {};
+// Member avatar colors
+const AVATAR_COLORS = ['#1a73e8','#1e8e3e','#d93025','#f9ab00','#9334e6','#12a4b4','#e91e63','#3f51b5','#e65100','#ab47bc','#00897b','#c2185b','#5c6bc0','#ef6c00'];
 
+let colorMap = {};
 const $ = id => document.getElementById(id);
 
-// ===== TOAST =====
-function toast(msg, type='inf') {
-    const t = $('toast');
-    t.textContent = msg;
-    t.className = `toast ${type} show`;
-    setTimeout(() => t.classList.remove('show'), 3000);
-}
-
-// ===== SERVER TIME =====
-function srvNow() { return new Date(Date.now() + srvOffset); }
-function srvDateStr() { const d = srvNow(); return d.getFullYear()+'-'+S(d.getMonth()+1)+'-'+S(d.getDate()); }
+function toast(msg, type='inf') { const t=$('toast'); t.textContent=msg; t.className=`toast ${type} show`; setTimeout(()=>t.classList.remove('show'),3000); }
+function srvNow() { return new Date(Date.now()+srvOffset); }
+function srvDateStr() { const d=srvNow(); return d.getFullYear()+'-'+S(d.getMonth()+1)+'-'+S(d.getDate()); }
 function S(n) { return String(n).padStart(2,'0'); }
 function isLocked(ds) {
-    if (!lockDate) return false;
-    if (ds < lockDate) return true;
-    if (ds === lockDate && lockH >= 0) {
-        const n = srvNow(), nd = srvDateStr(), h = n.getHours(), m = n.getMinutes();
-        if (nd > lockDate) return true;
-        if (nd === lockDate && (h > lockH || (h === lockH && m >= lockM))) return true;
+    if(!lockDate) return false;
+    if(ds<lockDate) return true;
+    if(ds===lockDate && lockH>=0) {
+        const n=srvNow(),nd=srvDateStr(),h=n.getHours(),m=n.getMinutes();
+        if(nd>lockDate) return true;
+        if(nd===lockDate && (h>lockH||(h===lockH&&m>=lockM))) return true;
     }
     return false;
 }
+function fmtTime(h,m) { const ap=h>=12?'PM':'AM'; return (h%12||12)+':'+S(m)+' '+ap; }
+function timeToY(h,m) { return (h-START_HOUR)*SLOT_H+(m/60)*SLOT_H; }
+function yToTime(y) { const t=(y/SLOT_H)*60; let h=START_HOUR+Math.floor(t/60),m=Math.round(t%60/15)*15; if(m>=60){m=0;h++;} if(h>END_HOUR){h=END_HOUR;m=0;} return {h,m}; }
+function calcHours(sh,sm,eh,em) { return Math.max(0,((eh*60+em)-(sh*60+sm))/60); }
+function dateStr(d) { return d.getFullYear()+'-'+S(d.getMonth()+1)+'-'+S(d.getDate()); }
 
-// ===== TIME HELPERS =====
-function timeSlots() {
-    const slots = [];
-    for (let h = START_HOUR; h <= END_HOUR; h++) {
-        for (let m = 0; m < 60; m += 15) {
-            if (h === END_HOUR && m > 0) break;
-            slots.push({ h, m, label: fmtTime(h, m) });
-        }
-    }
-    return slots;
-}
-function fmtTime(h, m) {
-    const ampm = h >= 12 ? 'PM' : 'AM';
-    const dh = h % 12 || 12;
-    return dh + ':' + S(m) + ' ' + ampm;
-}
-function timeToY(h, m) { return (h - START_HOUR) * SLOT_H + (m / 60) * SLOT_H; }
-function yToTime(y) {
-    const totalMin = (y / SLOT_H) * 60;
-    let h = START_HOUR + Math.floor(totalMin / 60);
-    let m = Math.round(totalMin % 60 / 15) * 15;
-    if (m >= 60) { m = 0; h++; }
-    if (h > END_HOUR) { h = END_HOUR; m = 0; }
-    return { h, m };
-}
-function calcHours(sh, sm, eh, em) { return Math.max(0, ((eh * 60 + em) - (sh * 60 + sm)) / 60); }
-
-// ===== AUTH =====
+// AUTH
 async function login() {
-    const u = $('loginUser').value.trim(), p = $('loginPass').value.trim(), err = $('loginErr'), btn = $('loginBtn');
-    if (!u || !p) { err.textContent = 'Enter both fields'; err.style.display = 'block'; return; }
-    btn.disabled = true; btn.textContent = 'Logging in…'; err.style.display = 'none';
-    try {
-        const r = await (await fetch(`${GAS}?action=login&username=${encodeURIComponent(u)}&password=${encodeURIComponent(p)}`)).json();
-        if (r.status === 'success') { user = u; role = r.role || 'data'; sessionStorage.setItem('cu', u); sessionStorage.setItem('cr', role); showApp(); }
-        else { err.textContent = r.message || 'Invalid'; err.style.display = 'block'; }
-    } catch(e) { err.textContent = e.message; err.style.display = 'block'; }
-    finally { btn.disabled = false; btn.textContent = 'Login'; }
+    const u=$('loginUser').value.trim(),p=$('loginPass').value.trim(),err=$('loginErr'),btn=$('loginBtn');
+    if(!u||!p){err.textContent='Enter both fields';err.style.display='block';return;}
+    btn.disabled=true;btn.textContent='Logging in…';err.style.display='none';
+    try{const r=await(await fetch(`${GAS}?action=login&username=${encodeURIComponent(u)}&password=${encodeURIComponent(p)}`)).json();if(r.status==='success'){user=u;role=r.role||'data';sessionStorage.setItem('cu',u);sessionStorage.setItem('cr',role);showApp();}else{err.textContent=r.message||'Invalid';err.style.display='block';}}catch(e){err.textContent=e.message;err.style.display='block';}finally{btn.disabled=false;btn.textContent='Login';}
 }
-function logout() { user = null; role = null; sessionStorage.removeItem('cu'); sessionStorage.removeItem('cr'); $('loginPage').style.display = ''; $('app').classList.remove('active'); }
+function logout() { user=null;role=null;sessionStorage.removeItem('cu');sessionStorage.removeItem('cr');$('loginPage').style.display='';$('app').classList.remove('active'); }
 
-// ===== DATA =====
-async function loadAll() {
-    await Promise.all([loadClients(), loadProjects(), loadAdmins(), loadLock()]);
-    await loadPlans();
-}
-async function loadClients() {
-    try { const r = await (await fetch(GAS+'?action=getClients&t='+Date.now())).json(); if(r.status==='success') { clients = r.clients||[]; assignColors(); fillSel($('mClient'), clients); } } catch(e){}
-}
-async function loadProjects() {
-    try { const r = await (await fetch(GAS+'?action=getProjects&t='+Date.now())).json(); if(r.status==='success') projects = r.projects||{}; } catch(e){}
-}
-async function loadAdmins() {
-    try { const r = await (await fetch(GAS+'?action=getAdmins')).json(); if(r.status==='success') { admins = r.admins||[]; fillSel($('mAdmin'), admins); } } catch(e){}
-}
+// DATA
+async function loadAll() { await Promise.all([loadClients(),loadProjects(),loadAdmins(),loadLock()]); await loadPlans(); }
+async function loadClients() { try{const r=await(await fetch(GAS+'?action=getClients&t='+Date.now())).json();if(r.status==='success'){clients=r.clients||[];assignColors();fillSel($('mClient'),clients);}}catch(e){} }
+async function loadProjects() { try{const r=await(await fetch(GAS+'?action=getProjects&t='+Date.now())).json();if(r.status==='success')projects=r.projects||{};}catch(e){} }
+async function loadAdmins() { try{const r=await(await fetch(GAS+'?action=getAdmins')).json();if(r.status==='success'){admins=r.admins||[];fillSel($('mAdmin'),admins);}}catch(e){} }
 async function loadLock() {
-    try {
-        const r = await (await fetch(GAS+'?action=getLockDate')).json();
-        if (r.status==='success' && r.lockDate) {
-            let ld = r.lockDate;
-            if (!/^\d{4}-\d{2}-\d{2}$/.test(ld)) { const p = new Date(ld); if(!isNaN(p)) ld = p.getFullYear()+'-'+S(p.getMonth()+1)+'-'+S(p.getDate()); }
-            lockDate = ld;
-            if (r.lockTimeHour >= 0) { lockH = r.lockTimeHour; lockM = r.lockTimeMinute||0; lockFmt = r.lockTimeFormatted||''; }
-            if (r.serverISTFormatted) srvOffset = new Date(r.serverISTFormatted).getTime() - Date.now();
-            showLockBanner();
-        }
-    } catch(e){}
+    try{const r=await(await fetch(GAS+'?action=getLockDate')).json();if(r.status==='success'&&r.lockDate){let ld=r.lockDate;if(!/^\d{4}-\d{2}-\d{2}$/.test(ld)){const p=new Date(ld);if(!isNaN(p))ld=p.getFullYear()+'-'+S(p.getMonth()+1)+'-'+S(p.getDate());}lockDate=ld;if(r.lockTimeHour>=0){lockH=r.lockTimeHour;lockM=r.lockTimeMinute||0;lockFmt=r.lockTimeFormatted||'';}if(r.serverISTFormatted)srvOffset=new Date(r.serverISTFormatted).getTime()-Date.now();showLockBanner();}}catch(e){}
 }
 async function loadPlans() {
-    plans = [];
-    try {
-        const r = await (await fetch(GAS+'?action=getMyApprovedPlans&username='+encodeURIComponent(user))).json();
-        if (r.status==='success') (r.plans||[]).forEach(p => plans.push(normPlan(p, 'Approved')));
-    } catch(e){}
-    if (role === 'admin') {
-        try {
-            const r2 = await (await fetch(GAS+'?action=getPendingPlanApprovals&approver='+encodeURIComponent(user))).json();
-            if (r2.status==='success') (r2.approvals||[]).forEach(p => plans.push(normPlan(p, 'Pending')));
-        } catch(e){}
-    }
+    plans=[];
+    try{const r=await(await fetch(GAS+'?action=getMyApprovedPlans&username='+encodeURIComponent(user))).json();if(r.status==='success')(r.plans||[]).forEach(p=>plans.push(normPlan(p,'Approved')));}catch(e){}
+    if(role==='admin'){try{const r2=await(await fetch(GAS+'?action=getPendingPlanApprovals&approver='+encodeURIComponent(user))).json();if(r2.status==='success')(r2.approvals||[]).forEach(p=>plans.push(normPlan(p,'Pending')));}catch(e){}}
     render();
 }
 
+// Load ALL team plans for a given date
+async function loadTeamPlans(dateFilter) {
+    teamPlans = [];
+    try {
+        const r = await (await fetch(GAS+'?action=getAllApprovedPlans&t='+Date.now())).json();
+        if (r.status === 'success') {
+            (r.plans||[]).forEach(p => {
+                const np = normPlan(p, 'Approved');
+                np.submittedBy = p.submittedBy || '';
+                if (np.dateStr === dateFilter) teamPlans.push(np);
+            });
+        }
+    } catch(e) { console.error('loadTeamPlans', e); }
+    renderTeam();
+}
+
 function normPlan(p, status) {
-    let ds = p.date;
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(ds)) { try { const d = new Date(ds); if(!isNaN(d)) ds = d.getFullYear()+'-'+S(d.getMonth()+1)+'-'+S(d.getDate()); } catch(e){} }
-    
-    // Try to extract start/end from stored metadata or default based on hours
-    const hrs = parseFloat(p.plannedHours) || 1;
-    // Default start: 9 AM
-    let sh = 9, sm = 0, eh, em;
-    
-    // Check if activity contains time info like "[10:00-12:30]"
-    const tmatch = (p.activity||'').match(/\[(\d{1,2}):(\d{2})\s*-\s*(\d{1,2}):(\d{2})\]/);
-    if (tmatch) {
-        sh = parseInt(tmatch[1]); sm = parseInt(tmatch[2]);
-        eh = parseInt(tmatch[3]); em = parseInt(tmatch[4]);
-    } else {
-        // Stack plans by checking existing plans on same date
-        const existing = plans.filter(x => x.dateStr === ds);
-        if (existing.length > 0) {
-            // Find latest end
-            let latestEnd = 9 * 60;
-            existing.forEach(x => { const e = x.endH * 60 + x.endM; if (e > latestEnd) latestEnd = e; });
-            sh = Math.floor(latestEnd / 60);
-            sm = latestEnd % 60;
-        }
-        const totalMin = hrs * 60;
-        const endMin = sh * 60 + sm + totalMin;
-        eh = Math.floor(endMin / 60);
-        em = endMin % 60;
-    }
-    
-    if (eh > END_HOUR) { eh = END_HOUR; em = 0; }
-    
-    return {
-        dateStr: ds, client: p.client, project: p.project, activity: (p.activity||'').replace(/\[\d{1,2}:\d{2}\s*-\s*\d{1,2}:\d{2}\]\s*/, ''),
-        plannedHours: hrs, type: p.type||'Recurring', admin: p.admin||p.approver||'',
-        startH: sh, startM: sm, endH: eh, endM: em,
-        status, planId: p.planId||'', rowIndex: p.rowIndex||null,
-        submittedBy: p.submittedBy || user
-    };
+    let ds=p.date;if(!/^\d{4}-\d{2}-\d{2}$/.test(ds)){try{const d=new Date(ds);if(!isNaN(d))ds=d.getFullYear()+'-'+S(d.getMonth()+1)+'-'+S(d.getDate());}catch(e){}}
+    const hrs=parseFloat(p.plannedHours)||1;
+    let sh=9,sm=0,eh,em;
+    const tmatch=(p.activity||'').match(/\[(\d{1,2}):(\d{2})\s*-\s*(\d{1,2}):(\d{2})\]/);
+    if(tmatch){sh=parseInt(tmatch[1]);sm=parseInt(tmatch[2]);eh=parseInt(tmatch[3]);em=parseInt(tmatch[4]);}
+    else{const existing=plans.filter(x=>x.dateStr===ds);if(existing.length>0){let le=9*60;existing.forEach(x=>{const e=x.endH*60+x.endM;if(e>le)le=e;});sh=Math.floor(le/60);sm=le%60;}const tm=hrs*60;const em2=sh*60+sm+tm;eh=Math.floor(em2/60);em=em2%60;}
+    if(eh>END_HOUR){eh=END_HOUR;em=0;}
+    return{dateStr:ds,client:p.client,project:p.project,activity:(p.activity||'').replace(/\[\d{1,2}:\d{2}\s*-\s*\d{1,2}:\d{2}\]\s*/,''),plannedHours:hrs,type:p.type||'Recurring',admin:p.admin||p.approver||'',startH:sh,startM:sm,endH:eh,endM:em,status,planId:p.planId||'',rowIndex:p.rowIndex||null,submittedBy:p.submittedBy||user};
 }
 
-// ===== COLORS =====
-function assignColors() { colorMap = {}; clients.forEach((c,i) => colorMap[c] = PALETTE[i % PALETTE.length]); }
-function getCol(c) { return colorMap[c] || {bg:'#e8eaed',bdr:'#9aa0a6',tx:'#5f6368'}; }
-
-// ===== HELPERS =====
-function fillSel(sel, arr, keep) {
-    const v = sel.value;
-    sel.innerHTML = '<option value="">Select…</option>' + arr.map(a => `<option value="${a}">${a}</option>`).join('');
-    if (keep && v) sel.value = v;
-}
+function assignColors() { colorMap={};clients.forEach((c,i)=>colorMap[c]=PALETTE[i%PALETTE.length]); }
+function getCol(c) { return colorMap[c]||{bg:'#e8eaed',bdr:'#9aa0a6',tx:'#5f6368'}; }
+function fillSel(sel,arr) { const v=sel.value;sel.innerHTML='<option value="">Select…</option>'+arr.map(a=>`<option value="${a}">${a}</option>`).join('');if(v)sel.value=v; }
 function showLockBanner() {
-    if (!lockDate) return;
-    let txt = isLocked(lockDate) ? `🔒 Lock active: ${lockDate} locked (${lockFmt} IST passed)` : `🔒 No entries before ${lockDate}${lockFmt ? '. Entries on '+lockDate+' until '+lockFmt+' IST' : ''}`;
-    $('lockBanner').textContent = txt;
-    $('lockBanner').classList.add('active');
+    if(!lockDate)return;
+    let txt=isLocked(lockDate)?`🔒 Lock active: ${lockDate} locked (${lockFmt} IST passed)`:`🔒 No entries before ${lockDate}${lockFmt?'. Entries on '+lockDate+' until '+lockFmt+' IST':''}`;
+    $('lockBanner').textContent=txt;$('lockBanner').classList.add('active');
 }
+function getWeekOf(date) { const d=new Date(date);const day=d.getDay();const sun=new Date(d);sun.setDate(d.getDate()-day);sun.setHours(0,0,0,0);return sun; }
+function weekDates() { const dates=[];for(let i=0;i<7;i++){const d=new Date(weekStart);d.setDate(weekStart.getDate()+i);dates.push(d);}return dates; }
 
-// ===== WEEK CALCULATION =====
-function getWeekOf(date) {
-    const d = new Date(date);
-    const day = d.getDay();
-    const sun = new Date(d);
-    sun.setDate(d.getDate() - day);
-    sun.setHours(0,0,0,0);
-    return sun;
-}
-function weekDates() {
-    const dates = [];
-    for (let i = 0; i < 7; i++) {
-        const d = new Date(weekStart);
-        d.setDate(weekStart.getDate() + i);
-        dates.push(d);
-    }
-    return dates;
-}
-function dateStr(d) { return d.getFullYear()+'-'+S(d.getMonth()+1)+'-'+S(d.getDate()); }
-
-// ===== RENDER =====
+// ===== RENDER DISPATCHER =====
 function render() {
-    if (currentView === 'week') renderWeek();
-    else renderMonth();
-    updateSummary();
+    if(currentView==='week') renderWeek();
+    else if(currentView==='month') renderMonth();
+    else if(currentView==='team') renderTeam();
+    if(currentView!=='team') updateSummary();
 }
 
-function renderWeek() {
-    $('monthView').style.display = 'none';
-    document.querySelector('.cal-wrap').style.display = 'flex';
-    
-    const today = new Date(); today.setHours(0,0,0,0);
-    const todayStr = dateStr(today);
-    const dates = weekDates();
-    const dayNames = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
-
-    // Title
-    const mo = dates[0].toLocaleDateString('en-US',{month:'long',year:'numeric'});
-    const mo2 = dates[6].toLocaleDateString('en-US',{month:'long',year:'numeric'});
-    $('monthTitle').textContent = mo === mo2 ? mo : dates[0].toLocaleDateString('en-US',{month:'short'}) + ' – ' + mo2;
-
-    // Day headers
-    const hdr = $('dayHeaderRow');
-    hdr.innerHTML = '<div class="time-gutter-header">GMT+5:30</div>';
-    dates.forEach((d, i) => {
-        const ds = dateStr(d);
-        const isToday = ds === todayStr;
-        // Compute total hours for this day
-        const dayPlans = plans.filter(p => p.dateStr === ds);
-        const totalH = dayPlans.reduce((s, p) => s + p.plannedHours, 0);
-        
-        const div = document.createElement('div');
-        div.className = 'day-header' + (isToday ? ' today' : '');
-        div.innerHTML = `<div class="day-name">${dayNames[i]}</div><div class="day-num">${d.getDate()}</div><div class="day-total">${totalH > 0 ? totalH.toFixed(1)+'h' : ''}</div>`;
-        hdr.appendChild(div);
-    });
-
-    // Time gutter
-    const gutter = $('timeGutter');
-    gutter.innerHTML = '';
-    gutter.style.height = (HOURS_COUNT * SLOT_H) + 'px';
-    for (let h = START_HOUR; h < END_HOUR; h++) {
-        const lbl = document.createElement('div');
-        lbl.className = 'time-gutter-label';
-        lbl.style.top = ((h - START_HOUR) * SLOT_H) + 'px';
-        lbl.style.position = 'absolute';
-        lbl.textContent = fmtTime(h, 0);
-        gutter.appendChild(lbl);
+// ===== BUILD GUTTER + HOUR LINES (shared helper) =====
+function buildGutter(gutterEl) {
+    gutterEl.innerHTML='';
+    gutterEl.style.height=(HOURS_COUNT*SLOT_H)+'px';
+    gutterEl.style.position='relative';
+    for(let h=START_HOUR;h<END_HOUR;h++){
+        const lbl=document.createElement('div');lbl.className='time-gutter-label';
+        lbl.style.top=((h-START_HOUR)*SLOT_H)+'px';lbl.style.position='absolute';
+        lbl.textContent=fmtTime(h,0);gutterEl.appendChild(lbl);
     }
-    gutter.style.position = 'relative';
+}
 
-    // Day columns
-    const cols = $('dayCols');
-    cols.innerHTML = '';
-    dates.forEach((d, i) => {
-        const ds = dateStr(d);
-        const col = document.createElement('div');
-        col.className = 'day-col';
-        col.dataset.date = ds;
-        col.style.height = (HOURS_COUNT * SLOT_H) + 'px';
-        col.style.position = 'relative';
-        if (isLocked(ds)) col.classList.add('locked');
+function addHourLines(col) {
+    for(let h=START_HOUR;h<END_HOUR;h++){
+        const line=document.createElement('div');line.className='hour-line';line.style.top=((h-START_HOUR)*SLOT_H)+'px';col.appendChild(line);
+        const half=document.createElement('div');half.className='hour-line half';half.style.top=((h-START_HOUR)*SLOT_H+SLOT_H/2)+'px';col.appendChild(half);
+    }
+}
 
-        // Hour lines
-        for (let h = START_HOUR; h < END_HOUR; h++) {
-            const line = document.createElement('div');
-            line.className = 'hour-line';
-            line.style.top = ((h - START_HOUR) * SLOT_H) + 'px';
-            col.appendChild(line);
-            // Half hour line
-            const half = document.createElement('div');
-            half.className = 'hour-line half';
-            half.style.top = ((h - START_HOUR) * SLOT_H + SLOT_H/2) + 'px';
-            col.appendChild(half);
-        }
+function addPlanBlock(col, p, isTeamView) {
+    const block=document.createElement('div');block.className='plan-block';
+    const c=getCol(p.client);block.style.background=c.bg;block.style.borderLeftColor=c.bdr;block.style.color=c.tx;
+    const top=timeToY(p.startH,p.startM),bottom=timeToY(p.endH,p.endM),height=Math.max(bottom-top,18);
+    block.style.top=top+'px';block.style.height=height+'px';
+    const showMeta=height>36,showTime=height>52;
+    block.innerHTML=`<span class="pb-title">${p.client} · ${p.activity}</span>${showMeta?`<span class="pb-meta">${p.project} – ${p.plannedHours}h</span>`:''}${showTime?`<span class="pb-time">${fmtTime(p.startH,p.startM)} – ${fmtTime(p.endH,p.endM)}</span>`:''}`;
+    block.title=`${p.client} / ${p.project}\n${p.activity}\n${fmtTime(p.startH,p.startM)} – ${fmtTime(p.endH,p.endM)}\n${p.plannedHours}h${isTeamView?' – '+p.submittedBy:''}`;
+    if(!isTeamView) block.addEventListener('click',e=>{e.stopPropagation();viewPlan(p);});
+    col.appendChild(block);
+}
 
-        // Now line
-        if (ds === todayStr) {
-            const now = new Date();
-            const nh = now.getHours(), nm = now.getMinutes();
-            if (nh >= START_HOUR && nh < END_HOUR) {
-                const nowLine = document.createElement('div');
-                nowLine.className = 'now-line';
-                nowLine.style.top = timeToY(nh, nm) + 'px';
-                nowLine.innerHTML = '<div class="now-dot"></div>';
-                col.appendChild(nowLine);
-            }
-        }
-
-        // Plan blocks
-        const dayPlans = plans.filter(p => p.dateStr === ds);
-        dayPlans.forEach(p => {
-            const block = document.createElement('div');
-            block.className = 'plan-block';
-            const c = getCol(p.client);
-            block.style.background = c.bg;
-            block.style.borderLeftColor = c.bdr;
-            block.style.color = c.tx;
-            const top = timeToY(p.startH, p.startM);
-            const bottom = timeToY(p.endH, p.endM);
-            const height = Math.max(bottom - top, 18);
-            block.style.top = top + 'px';
-            block.style.height = height + 'px';
-            
-            const showMeta = height > 36;
-            const showTime = height > 52;
-            block.innerHTML = `<span class="pb-title">${p.client} · ${p.activity}</span>${showMeta ? `<span class="pb-meta">${p.project} – ${p.plannedHours}h</span>` : ''}${showTime ? `<span class="pb-time">${fmtTime(p.startH,p.startM)} – ${fmtTime(p.endH,p.endM)}</span>` : ''}`;
-            block.title = `${p.client} / ${p.project}\n${p.activity}\n${fmtTime(p.startH,p.startM)} – ${fmtTime(p.endH,p.endM)}\n${p.plannedHours}h – ${p.status}`;
-            block.addEventListener('click', (e) => { e.stopPropagation(); viewPlan(p); });
-            col.appendChild(block);
-        });
-
-        // Drag preview
-        const preview = document.createElement('div');
-        preview.className = 'drag-preview';
-        col.appendChild(preview);
-
-        // Drag to create
-        if (!isLocked(ds)) setupDrag(col, ds, preview);
-
+// ===== WEEK VIEW =====
+function renderWeek() {
+    $('weekWrap').style.display='flex';$('monthView').style.display='none';$('teamWrap').style.display='none';
+    $('summaryBar').style.display='flex';$('teamControls').classList.remove('active');
+    $('navGroup').style.display='flex';
+    const today=new Date();today.setHours(0,0,0,0);const todayStr=dateStr(today);
+    const dates=weekDates();const dayNames=['SUN','MON','TUE','WED','THU','FRI','SAT'];
+    const mo=dates[0].toLocaleDateString('en-US',{month:'long',year:'numeric'}),mo2=dates[6].toLocaleDateString('en-US',{month:'long',year:'numeric'});
+    $('monthTitle').textContent=mo===mo2?mo:dates[0].toLocaleDateString('en-US',{month:'short'})+' – '+mo2;
+    const hdr=$('dayHeaderRow');hdr.innerHTML='<div class="time-gutter-header">GMT+5:30</div>';
+    dates.forEach((d,i)=>{const ds=dateStr(d),isToday=ds===todayStr;const dp=plans.filter(p=>p.dateStr===ds);const th=dp.reduce((s,p)=>s+p.plannedHours,0);
+        const div=document.createElement('div');div.className='day-header'+(isToday?' today':'');div.innerHTML=`<div class="day-name">${dayNames[i]}</div><div class="day-num">${d.getDate()}</div><div class="day-total">${th>0?th.toFixed(1)+'h':''}</div>`;hdr.appendChild(div);});
+    buildGutter($('timeGutter'));
+    const cols=$('dayCols');cols.innerHTML='';
+    dates.forEach(d=>{const ds=dateStr(d),todayMatch=ds===todayStr,locked=isLocked(ds);
+        const col=document.createElement('div');col.className='day-col';col.dataset.date=ds;col.style.height=(HOURS_COUNT*SLOT_H)+'px';col.style.position='relative';
+        if(locked)col.classList.add('locked');addHourLines(col);
+        if(todayMatch){const now=new Date(),nh=now.getHours(),nm=now.getMinutes();if(nh>=START_HOUR&&nh<END_HOUR){const nl=document.createElement('div');nl.className='now-line';nl.style.top=timeToY(nh,nm)+'px';nl.innerHTML='<div class="now-dot"></div>';col.appendChild(nl);}}
+        plans.filter(p=>p.dateStr===ds).forEach(p=>addPlanBlock(col,p,false));
+        const preview=document.createElement('div');preview.className='drag-preview';col.appendChild(preview);
+        if(!locked)setupDrag(col,ds,preview);
         cols.appendChild(col);
     });
-
-    // Scroll to 8 AM on first load
-    const scroll = $('gridScroll');
-    if (!scroll.dataset.scrolled) {
-        scroll.scrollTop = timeToY(8, 0);
-        scroll.dataset.scrolled = '1';
-    }
+    const scroll=$('gridScroll');if(!scroll.dataset.scrolled){scroll.scrollTop=timeToY(8,0);scroll.dataset.scrolled='1';}
 }
 
 // ===== MONTH VIEW =====
 function renderMonth() {
-    document.querySelector('.cal-wrap').style.display = 'none';
-    const mv = $('monthView');
-    mv.style.display = 'block';
-    
-    const ref = currentMonthYear || weekStart || new Date();
-    const year = ref.getFullYear();
-    const month = ref.getMonth();
-    const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-    $('monthTitle').textContent = monthNames[month] + ' ' + year;
-    
-    const firstDay = new Date(year, month, 1).getDay();
-    const daysInMonth = new Date(year, month+1, 0).getDate();
-    const today = new Date(); today.setHours(0,0,0,0);
-    const todayStr = dateStr(today);
-    
-    let html = '<div style="display:grid;grid-template-columns:repeat(7,1fr);border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--border);gap:1px;margin-top:16px;">';
-    ['SUN','MON','TUE','WED','THU','FRI','SAT'].forEach(d => {
-        html += `<div style="background:var(--surface-alt);padding:10px;text-align:center;font-size:.72rem;font-weight:600;letter-spacing:.06em;color:var(--text-muted)">${d}</div>`;
-    });
-    
-    // Leading blanks
-    for (let i = 0; i < firstDay; i++) html += '<div style="background:var(--surface-alt);min-height:90px;padding:6px;opacity:.4"></div>';
-    
-    for (let d = 1; d <= daysInMonth; d++) {
-        const ds = year+'-'+S(month+1)+'-'+S(d);
-        const isToday = ds === todayStr;
-        const locked = isLocked(ds);
-        const dayPlans = plans.filter(p => p.dateStr === ds);
-        const totalH = dayPlans.reduce((s,p) => s + p.plannedHours, 0);
-        
-        html += `<div style="background:var(--surface);min-height:90px;padding:6px;cursor:${locked?'not-allowed':'pointer'};${locked?'background:repeating-linear-gradient(-45deg,transparent,transparent 5px,rgba(217,48,37,.03) 5px,rgba(217,48,37,.03) 10px)':''}" onclick="${locked?'':'openModalForDate(\''+ds+'\')'}" >`;
-        html += `<div style="font-size:.82rem;font-weight:600;${isToday?'background:var(--accent);color:#fff;border-radius:50%;width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center':''}">${d}</div>`;
-        if (totalH > 0) html += `<div style="font-family:var(--font-mono);font-size:.7rem;color:var(--accent);margin-top:2px">${totalH.toFixed(1)}h</div>`;
-        dayPlans.slice(0,3).forEach(p => {
-            const c = getCol(p.client);
-            html += `<div style="font-size:.68rem;padding:2px 4px;margin-top:2px;border-radius:3px;background:${c.bg};color:${c.tx};border-left:3px solid ${c.bdr};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.client} · ${p.activity}</div>`;
-        });
-        if (dayPlans.length > 3) html += `<div style="font-size:.68rem;color:var(--accent);font-weight:600;margin-top:2px">+${dayPlans.length-3} more</div>`;
-        html += '</div>';
+    $('weekWrap').style.display='none';$('monthView').style.display='block';$('teamWrap').style.display='none';
+    $('summaryBar').style.display='flex';$('teamControls').classList.remove('active');
+    $('navGroup').style.display='flex';
+    const ref=currentMonthYear||weekStart||new Date();const year=ref.getFullYear(),month=ref.getMonth();
+    const mNames=['January','February','March','April','May','June','July','August','September','October','November','December'];
+    $('monthTitle').textContent=mNames[month]+' '+year;
+    const firstDay=new Date(year,month,1).getDay(),dim=new Date(year,month+1,0).getDate();
+    const today=new Date();today.setHours(0,0,0,0);const todayStr=dateStr(today);
+    let h='<div style="display:grid;grid-template-columns:repeat(7,1fr);border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--border);gap:1px;margin-top:16px;">';
+    ['SUN','MON','TUE','WED','THU','FRI','SAT'].forEach(d=>{h+=`<div style="background:var(--surface-alt);padding:10px;text-align:center;font-size:.72rem;font-weight:600;letter-spacing:.06em;color:var(--text-muted)">${d}</div>`;});
+    for(let i=0;i<firstDay;i++)h+='<div style="background:var(--surface-alt);min-height:90px;padding:6px;opacity:.4"></div>';
+    for(let d=1;d<=dim;d++){const ds=year+'-'+S(month+1)+'-'+S(d),isToday=ds===todayStr,locked=isLocked(ds),dp=plans.filter(p=>p.dateStr===ds),th=dp.reduce((s,p)=>s+p.plannedHours,0);
+        h+=`<div style="background:var(--surface);min-height:90px;padding:6px;cursor:${locked?'not-allowed':'pointer'};${locked?'background:repeating-linear-gradient(-45deg,transparent,transparent 5px,rgba(217,48,37,.03) 5px,rgba(217,48,37,.03) 10px)':''}" onclick="${locked?'':'openModalForDate(\''+ds+'\')'}" >`;
+        h+=`<div style="font-size:.82rem;font-weight:600;${isToday?'background:var(--accent);color:#fff;border-radius:50%;width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center':''}">${d}</div>`;
+        if(th>0)h+=`<div style="font-family:var(--font-mono);font-size:.7rem;color:var(--accent);margin-top:2px">${th.toFixed(1)}h</div>`;
+        dp.slice(0,3).forEach(p=>{const c=getCol(p.client);h+=`<div style="font-size:.68rem;padding:2px 4px;margin-top:2px;border-radius:3px;background:${c.bg};color:${c.tx};border-left:3px solid ${c.bdr};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.client} · ${p.activity}</div>`;});
+        if(dp.length>3)h+=`<div style="font-size:.68rem;color:var(--accent);font-weight:600;margin-top:2px">+${dp.length-3} more</div>`;
+        h+='</div>';
     }
-    
-    // Trailing blanks
-    const total = firstDay + daysInMonth;
-    const rem = (7 - total%7) % 7;
-    for (let i = 0; i < rem; i++) html += '<div style="background:var(--surface-alt);min-height:90px;padding:6px;opacity:.4"></div>';
-    
-    html += '</div>';
-    mv.innerHTML = html;
+    const total=firstDay+dim;for(let i=0;i<(7-total%7)%7;i++)h+='<div style="background:var(--surface-alt);min-height:90px;padding:6px;opacity:.4"></div>';
+    h+='</div>';$('monthView').innerHTML=h;
 }
 
-// ===== DRAG TO CREATE =====
-function setupDrag(col, ds, preview) {
-    let dragging = false, startY = 0, currentY = 0;
+// ===== TEAM VIEW =====
+function renderTeam() {
+    $('weekWrap').style.display='none';$('monthView').style.display='none';
+    $('teamWrap').style.display='flex';$('teamWrap').style.flexDirection='column';
+    $('summaryBar').style.display='none';$('teamControls').classList.add('active');
+    $('navGroup').style.display='none';
 
-    col.addEventListener('mousedown', (e) => {
-        if (e.target.classList.contains('plan-block') || e.target.closest('.plan-block')) return;
-        e.preventDefault();
-        dragging = true;
-        const rect = col.getBoundingClientRect();
-        startY = e.clientY - rect.top + col.parentElement.parentElement.parentElement.scrollTop;
-        // Snap to 15 min
-        const t = yToTime(startY);
-        startY = timeToY(t.h, t.m);
-        currentY = startY;
-        preview.style.display = 'block';
-        preview.style.top = startY + 'px';
-        preview.style.height = (SLOT_H / 4) + 'px'; // min 15 min
+    const selectedDate = $('teamDate').value;
+    if (!selectedDate) {
+        $('monthTitle').textContent = 'Team View';
+        $('teamHeaderRow').innerHTML = '<div class="time-gutter-header">GMT+5:30</div>';
+        $('teamCols').innerHTML = '<div style="padding:60px 20px;text-align:center;color:var(--text-muted);font-size:0.95rem;grid-column:1/-1">Select a date above to view team tasks</div>';
+        $('teamStat').innerHTML = '';
+        return;
+    }
+
+    // Format title
+    const dObj = new Date(selectedDate + 'T00:00:00');
+    const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    $('monthTitle').textContent = dayNames[dObj.getDay()] + ', ' + dObj.toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
+
+    // Group by member
+    const byMember = {};
+    teamPlans.forEach(p => {
+        const m = p.submittedBy || 'Unknown';
+        if (!byMember[m]) byMember[m] = [];
+        byMember[m].push(p);
+    });
+    const members = Object.keys(byMember).sort();
+
+    if (members.length === 0) {
+        $('teamHeaderRow').innerHTML = '<div class="time-gutter-header">GMT+5:30</div>';
+        $('teamCols').innerHTML = '';
+        $('teamStat').innerHTML = 'No plans found for this date';
+        buildGutter($('teamTimeGutter'));
+        return;
+    }
+
+    const totalHours = teamPlans.reduce((s, p) => s + p.plannedHours, 0);
+    $('teamStat').innerHTML = `<b>${members.length}</b> member${members.length>1?'s':''} · <b>${totalHours.toFixed(1)}h</b> total planned`;
+
+    // Build headers
+    const hdr = $('teamHeaderRow');
+    hdr.innerHTML = '<div class="time-gutter-header">GMT+5:30</div>';
+    members.forEach((m, idx) => {
+        const mPlans = byMember[m];
+        const mHours = mPlans.reduce((s, p) => s + p.plannedHours, 0);
+        const initial = m.charAt(0).toUpperCase();
+        const avatarColor = AVATAR_COLORS[idx % AVATAR_COLORS.length];
+        const div = document.createElement('div');
+        div.className = 'team-member-header';
+        div.innerHTML = `<div class="tm-avatar" style="background:${avatarColor}">${initial}</div><div class="tm-name">${m}</div><div class="tm-hours">${mHours.toFixed(1)}h</div>`;
+        hdr.appendChild(div);
     });
 
-    col.addEventListener('mousemove', (e) => {
-        if (!dragging) return;
-        const rect = col.getBoundingClientRect();
-        currentY = e.clientY - rect.top + col.parentElement.parentElement.parentElement.scrollTop;
-        const t = yToTime(currentY);
-        currentY = timeToY(t.h, t.m);
-        const top = Math.min(startY, currentY);
-        const height = Math.max(Math.abs(currentY - startY), SLOT_H / 4);
-        preview.style.top = top + 'px';
-        preview.style.height = height + 'px';
+    // Build time gutter
+    buildGutter($('teamTimeGutter'));
+
+    // Build member columns
+    const cols = $('teamCols');
+    cols.innerHTML = '';
+    members.forEach(m => {
+        const col = document.createElement('div');
+        col.className = 'day-col';
+        col.style.height = (HOURS_COUNT * SLOT_H) + 'px';
+        col.style.position = 'relative';
+        addHourLines(col);
+
+        // Add now line if selected date is today
+        const today = new Date(); today.setHours(0,0,0,0);
+        if (selectedDate === dateStr(today)) {
+            const now = new Date(), nh = now.getHours(), nm = now.getMinutes();
+            if (nh >= START_HOUR && nh < END_HOUR) {
+                const nl = document.createElement('div'); nl.className = 'now-line';
+                nl.style.top = timeToY(nh, nm) + 'px';
+                nl.innerHTML = '<div class="now-dot"></div>';
+                col.appendChild(nl);
+            }
+        }
+
+        // Resolve overlaps for this member's plans
+        const mPlans = byMember[m] || [];
+        mPlans.forEach(p => addPlanBlock(col, p, true));
+
+        cols.appendChild(col);
     });
 
-    const endDrag = () => {
-        if (!dragging) return;
-        dragging = false;
-        preview.style.display = 'none';
-        
-        let y1 = Math.min(startY, currentY);
-        let y2 = Math.max(startY, currentY);
-        if (y2 - y1 < SLOT_H / 4) y2 = y1 + SLOT_H / 4; // min 15 min
-        
-        const t1 = yToTime(y1);
-        const t2 = yToTime(y2);
-        // Ensure at least 15 min
-        if (t1.h === t2.h && t1.m === t2.m) { t2.m += 15; if(t2.m>=60){t2.m=0;t2.h++;} }
-        
-        openModal(ds, t1.h, t1.m, t2.h, t2.m);
-    };
+    // Scroll to 8 AM
+    const scroll = $('teamGridScroll');
+    scroll.scrollTop = timeToY(8, 0);
+}
 
-    col.addEventListener('mouseup', endDrag);
-    col.addEventListener('mouseleave', () => { if(dragging) endDrag(); });
-
-    // Click to create (1 hour block)
-    col.addEventListener('click', (e) => {
-        if (e.target.classList.contains('plan-block') || e.target.closest('.plan-block')) return;
-        // Don't fire if drag happened
-    });
+// ===== DRAG =====
+function setupDrag(col,ds,preview) {
+    let dragging=false,startY=0,currentY=0;
+    col.addEventListener('mousedown',e=>{if(e.target.closest('.plan-block'))return;e.preventDefault();dragging=true;const rect=col.getBoundingClientRect();startY=e.clientY-rect.top+$('gridScroll').scrollTop;const t=yToTime(startY);startY=timeToY(t.h,t.m);currentY=startY;preview.style.display='block';preview.style.top=startY+'px';preview.style.height=(SLOT_H/4)+'px';});
+    col.addEventListener('mousemove',e=>{if(!dragging)return;const rect=col.getBoundingClientRect();currentY=e.clientY-rect.top+$('gridScroll').scrollTop;const t=yToTime(currentY);currentY=timeToY(t.h,t.m);const top=Math.min(startY,currentY),h=Math.max(Math.abs(currentY-startY),SLOT_H/4);preview.style.top=top+'px';preview.style.height=h+'px';});
+    const endDrag=()=>{if(!dragging)return;dragging=false;preview.style.display='none';let y1=Math.min(startY,currentY),y2=Math.max(startY,currentY);if(y2-y1<SLOT_H/4)y2=y1+SLOT_H/4;const t1=yToTime(y1),t2=yToTime(y2);if(t1.h===t2.h&&t1.m===t2.m){t2.m+=15;if(t2.m>=60){t2.m=0;t2.h++;}}openModal(ds,t1.h,t1.m,t2.h,t2.m);};
+    col.addEventListener('mouseup',endDrag);col.addEventListener('mouseleave',()=>{if(dragging)endDrag();});
 }
 
 // ===== SUMMARY =====
 function updateSummary() {
-    const dates = weekDates().map(d => dateStr(d));
-    const weekPlans = plans.filter(p => dates.includes(p.dateStr));
-    const total = weekPlans.reduce((s, p) => s + p.plannedHours, 0);
-    $('sumWeek').textContent = total.toFixed(1) + 'h';
-    
-    // Per-client summary
-    const bar = $('summaryBar');
-    // Remove old client items
-    bar.querySelectorAll('.client-sum').forEach(el => el.remove());
-    const byClient = {};
-    weekPlans.forEach(p => { byClient[p.client] = (byClient[p.client]||0) + p.plannedHours; });
-    Object.entries(byClient).forEach(([c, h]) => {
-        const col = getCol(c);
-        const el = document.createElement('div');
-        el.className = 'summary-item client-sum';
-        el.innerHTML = `<div class="summary-dot" style="background:${col.bdr}"></div>${c}: <span class="summary-val">${h.toFixed(1)}h</span>`;
-        bar.appendChild(el);
-    });
+    const dates=weekDates().map(d=>dateStr(d));const wp=plans.filter(p=>dates.includes(p.dateStr));const total=wp.reduce((s,p)=>s+p.plannedHours,0);
+    $('sumWeek').textContent=total.toFixed(1)+'h';
+    $('summaryBar').querySelectorAll('.client-sum').forEach(el=>el.remove());
+    const bc={};wp.forEach(p=>{bc[p.client]=(bc[p.client]||0)+p.plannedHours;});
+    Object.entries(bc).forEach(([c,h])=>{const col=getCol(c);const el=document.createElement('div');el.className='summary-item client-sum';el.innerHTML=`<div class="summary-dot" style="background:${col.bdr}"></div>${c}: <span class="summary-val">${h.toFixed(1)}h</span>`;$('summaryBar').appendChild(el);});
 }
 
 // ===== MODAL =====
 function populateTimeSelects() {
-    const slots = timeSlots();
-    const sOpts = slots.map(s => `<option value="${s.h}:${S(s.m)}">${s.label}</option>`).join('');
-    $('mStart').innerHTML = sOpts;
-    $('mEnd').innerHTML = sOpts;
+    const slots=[];for(let h=START_HOUR;h<=END_HOUR;h++)for(let m=0;m<60;m+=15){if(h===END_HOUR&&m>0)break;slots.push({h,m,label:fmtTime(h,m)});}
+    const o=slots.map(s=>`<option value="${s.h}:${S(s.m)}">${s.label}</option>`).join('');$('mStart').innerHTML=o;$('mEnd').innerHTML=o;
 }
-
-function openModal(ds, sh, sm, eh, em) {
-    $('mDate').value = ds;
-    $('mStart').value = sh + ':' + S(sm);
-    $('mEnd').value = eh + ':' + S(em);
-    updateHoursDisplay();
-    $('mClient').value = '';
-    $('mProject').innerHTML = '<option value="">Select client…</option>';
-    $('mActivity').value = '';
-    $('mType').value = '';
-    $('mAdmin').value = '';
-    $('mTitle').textContent = 'Add Plan';
-    $('mSave').textContent = 'Save Plan';
-    $('mDelete').style.display = 'none';
-    $('mSave').dataset.mode = 'add';
-    $('planModal').classList.add('active');
-    setTimeout(() => $('mClient').focus(), 100);
+function openModal(ds,sh,sm,eh,em) {
+    $('mDate').value=ds;$('mStart').value=sh+':'+S(sm);$('mEnd').value=eh+':'+S(em);updateHoursDisplay();
+    $('mClient').value='';$('mProject').innerHTML='<option value="">Select client…</option>';$('mActivity').value='';$('mType').value='';$('mAdmin').value='';
+    $('mTitle').textContent='Add Plan';$('mSave').textContent='Save Plan';$('mDelete').style.display='none';$('mSave').dataset.mode='add';
+    $('planModal').classList.add('active');setTimeout(()=>$('mClient').focus(),100);
 }
-window.openModalForDate = function(ds) { openModal(ds, 9, 0, 10, 0); };
-
+window.openModalForDate=function(ds){openModal(ds,9,0,10,0);};
 function viewPlan(p) {
-    $('mDate').value = p.dateStr;
-    $('mStart').value = p.startH + ':' + S(p.startM);
-    $('mEnd').value = p.endH + ':' + S(p.endM);
-    updateHoursDisplay();
-    $('mClient').value = p.client;
-    updateProjectDropdown();
-    $('mProject').value = p.project;
-    $('mActivity').value = p.activity;
-    $('mType').value = p.type;
-    $('mAdmin').value = p.admin;
-    $('mTitle').textContent = 'View / Edit Plan';
-    $('mSave').textContent = 'Update Plan';
-    $('mSave').dataset.mode = 'edit';
-    $('mSave').dataset.planId = p.planId;
-    $('mSave').dataset.rowIndex = p.rowIndex || '';
-    $('mDelete').style.display = (p.status === 'Approved' || role === 'admin') ? 'inline-flex' : 'none';
-    $('mDelete').dataset.rowIndex = p.rowIndex || '';
-    $('mDelete').dataset.planId = p.planId || '';
+    $('mDate').value=p.dateStr;$('mStart').value=p.startH+':'+S(p.startM);$('mEnd').value=p.endH+':'+S(p.endM);updateHoursDisplay();
+    $('mClient').value=p.client;updateProjectDropdown();$('mProject').value=p.project;$('mActivity').value=p.activity;$('mType').value=p.type;$('mAdmin').value=p.admin;
+    $('mTitle').textContent='View / Edit Plan';$('mSave').textContent='Update Plan';$('mSave').dataset.mode='edit';$('mSave').dataset.planId=p.planId;$('mSave').dataset.rowIndex=p.rowIndex||'';
+    $('mDelete').style.display=(p.status==='Approved'||role==='admin')?'inline-flex':'none';$('mDelete').dataset.rowIndex=p.rowIndex||'';$('mDelete').dataset.planId=p.planId||'';
     $('planModal').classList.add('active');
 }
-
-function closeModal() { $('planModal').classList.remove('active'); }
-
-function updateHoursDisplay() {
-    const sv = $('mStart').value.split(':');
-    const ev = $('mEnd').value.split(':');
-    if (sv.length === 2 && ev.length === 2) {
-        const h = calcHours(+sv[0], +sv[1], +ev[0], +ev[1]);
-        $('mHoursDisplay').textContent = h.toFixed(2) + ' h';
-    }
-}
-
-function updateProjectDropdown() {
-    const c = $('mClient').value;
-    const sel = $('mProject');
-    if (!c) { sel.innerHTML = '<option value="">Select client…</option>'; return; }
-    const ps = projects[c] || [];
-    sel.innerHTML = '<option value="">Select…</option>' + ps.map(p => `<option value="${p}">${p}</option>`).join('');
-}
+function closeModal(){$('planModal').classList.remove('active');}
+function updateHoursDisplay() { const sv=$('mStart').value.split(':'),ev=$('mEnd').value.split(':');if(sv.length===2&&ev.length===2){const h=calcHours(+sv[0],+sv[1],+ev[0],+ev[1]);$('mHoursDisplay').textContent=h.toFixed(2)+' h';} }
+function updateProjectDropdown() { const c=$('mClient').value,sel=$('mProject');if(!c){sel.innerHTML='<option value="">Select client…</option>';return;}const ps=projects[c]||[];sel.innerHTML='<option value="">Select…</option>'+ps.map(p=>`<option value="${p}">${p}</option>`).join(''); }
 
 async function savePlan() {
-    const ds = $('mDate').value;
-    const sv = $('mStart').value.split(':');
-    const ev = $('mEnd').value.split(':');
-    const client = $('mClient').value;
-    const project = $('mProject').value;
-    const activity = $('mActivity').value.trim();
-    const type = $('mType').value;
-    const admin = $('mAdmin').value;
-    
-    if (!ds || !client || !project || !activity || !type || !admin) { toast('Fill all fields', 'err'); return; }
-    
-    const sh = +sv[0], sm = +sv[1], eh = +ev[0], em = +ev[1];
-    const hours = calcHours(sh, sm, eh, em);
-    if (hours <= 0) { toast('End time must be after start time', 'err'); return; }
-    if (isLocked(ds)) { toast('Date is locked', 'err'); return; }
-    
-    const btn = $('mSave');
-    btn.disabled = true; btn.textContent = 'Saving…';
-    
-    // Encode time range in activity so we can restore position
-    const activityWithTime = `[${sh}:${S(sm)}-${eh}:${S(em)}] ${activity}`;
-    
-    try {
-        const mode = btn.dataset.mode;
-        
-        if (mode === 'edit' && btn.dataset.rowIndex) {
-            // Update existing plan
-            await fetch(GAS, { method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/json'},
-                body: JSON.stringify({
-                    action: 'editPlanItem',
-                    rowIndex: parseInt(btn.dataset.rowIndex),
-                    updates: { date: ds, client, project, activity: activityWithTime, plannedHours: hours, type }
-                })
-            });
-        } else {
-            // Create new
-            await fetch(GAS, { method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/json'},
-                body: JSON.stringify({
-                    action: 'submitPlan',
-                    activities: [{ date: ds, clientName: client, project, activity: activityWithTime, plannedHours: hours, adminAssigned: admin, type, user }],
-                    submittedBy: user,
-                    isAdmin: true
-                })
-            });
-        }
-        
-        closeModal();
-        toast('Plan saved!', 'ok');
-        setTimeout(() => loadPlans(), 1000);
-    } catch(e) { toast('Error: '+e.message, 'err'); }
-    finally { btn.disabled = false; btn.textContent = mode === 'edit' ? 'Update Plan' : 'Save Plan'; }
+    const ds=$('mDate').value,sv=$('mStart').value.split(':'),ev=$('mEnd').value.split(':'),client=$('mClient').value,project=$('mProject').value,activity=$('mActivity').value.trim(),type=$('mType').value,admin=$('mAdmin').value;
+    if(!ds||!client||!project||!activity||!type||!admin){toast('Fill all fields','err');return;}
+    const sh=+sv[0],sm=+sv[1],eh=+ev[0],em=+ev[1],hours=calcHours(sh,sm,eh,em);
+    if(hours<=0){toast('End must be after start','err');return;}if(isLocked(ds)){toast('Date is locked','err');return;}
+    const btn=$('mSave');btn.disabled=true;btn.textContent='Saving…';
+    const actT=`[${sh}:${S(sm)}-${eh}:${S(em)}] ${activity}`;
+    try{const mode=btn.dataset.mode;
+        if(mode==='edit'&&btn.dataset.rowIndex){await fetch(GAS,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'editPlanItem',rowIndex:parseInt(btn.dataset.rowIndex),updates:{date:ds,client,project,activity:actT,plannedHours:hours,type}})});}
+        else{await fetch(GAS,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'submitPlan',activities:[{date:ds,clientName:client,project,activity:actT,plannedHours:hours,adminAssigned:admin,type,user}],submittedBy:user,isAdmin:true})});}
+        closeModal();toast('Plan saved!','ok');setTimeout(()=>loadPlans(),1000);
+    }catch(e){toast('Error: '+e.message,'err');}finally{btn.disabled=false;btn.textContent=btn.dataset.mode==='edit'?'Update Plan':'Save Plan';}
 }
-
 async function deletePlan() {
-    const ri = $('mDelete').dataset.rowIndex;
-    const pid = $('mDelete').dataset.planId;
-    if (!ri && !pid) { toast('Cannot delete', 'err'); return; }
-    if (!confirm('Delete this plan?')) return;
-    
-    try {
-        await fetch(GAS, { method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/json'},
-            body: JSON.stringify({ action: 'rejectPlan', planId: pid, rowIndices: ri ? [parseInt(ri)] : undefined })
-        });
-        closeModal();
-        toast('Plan deleted', 'ok');
-        setTimeout(() => loadPlans(), 1000);
-    } catch(e) { toast('Error: '+e.message, 'err'); }
+    const ri=$('mDelete').dataset.rowIndex,pid=$('mDelete').dataset.planId;if(!ri&&!pid){toast('Cannot delete','err');return;}if(!confirm('Delete this plan?'))return;
+    try{await fetch(GAS,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'rejectPlan',planId:pid,rowIndices:ri?[parseInt(ri)]:undefined})});closeModal();toast('Plan deleted','ok');setTimeout(()=>loadPlans(),1000);}catch(e){toast('Error: '+e.message,'err');}
 }
 
 // ===== NAV =====
-function goToday() {
-    weekStart = getWeekOf(new Date());
-    currentMonthYear = new Date();
-    render();
-}
-function goPrev() {
-    if (currentView === 'week') {
-        weekStart = new Date(weekStart);
-        weekStart.setDate(weekStart.getDate() - 7);
-    } else {
-        if (!currentMonthYear) currentMonthYear = new Date();
-        currentMonthYear = new Date(currentMonthYear.getFullYear(), currentMonthYear.getMonth() - 1, 1);
-    }
-    render();
-}
-function goNext() {
-    if (currentView === 'week') {
-        weekStart = new Date(weekStart);
-        weekStart.setDate(weekStart.getDate() + 7);
-    } else {
-        if (!currentMonthYear) currentMonthYear = new Date();
-        currentMonthYear = new Date(currentMonthYear.getFullYear(), currentMonthYear.getMonth() + 1, 1);
-    }
-    render();
-}
+function goToday(){weekStart=getWeekOf(new Date());currentMonthYear=new Date();$('teamDate').value=dateStr(new Date());if(currentView==='team')loadTeamPlans($('teamDate').value);else render();}
+function goPrev(){if(currentView==='week'){weekStart=new Date(weekStart);weekStart.setDate(weekStart.getDate()-7);}else if(currentView==='month'){if(!currentMonthYear)currentMonthYear=new Date();currentMonthYear=new Date(currentMonthYear.getFullYear(),currentMonthYear.getMonth()-1,1);}render();}
+function goNext(){if(currentView==='week'){weekStart=new Date(weekStart);weekStart.setDate(weekStart.getDate()+7);}else if(currentView==='month'){if(!currentMonthYear)currentMonthYear=new Date();currentMonthYear=new Date(currentMonthYear.getFullYear(),currentMonthYear.getMonth()+1,1);}render();}
 
 function switchView(v) {
-    currentView = v;
-    $('viewWeek').classList.toggle('active', v==='week');
-    $('viewMonth').classList.toggle('active', v==='month');
-    if (v === 'month' && !currentMonthYear) currentMonthYear = weekStart || new Date();
-    render();
+    currentView=v;
+    $('viewWeek').classList.toggle('active',v==='week');
+    $('viewMonth').classList.toggle('active',v==='month');
+    $('viewTeam').classList.toggle('active',v==='team');
+    if(v==='month'&&!currentMonthYear) currentMonthYear=weekStart||new Date();
+    if(v==='team') {
+        const td = $('teamDate').value || dateStr(new Date());
+        $('teamDate').value = td;
+        loadTeamPlans(td);
+    } else {
+        render();
+    }
 }
 
 // ===== SHOW APP =====
 async function showApp() {
-    $('loginPage').style.display = 'none';
-    $('app').classList.add('active');
-    $('userPill').textContent = user + ' (' + (role==='admin'?'Admin':'User') + ')';
-    weekStart = getWeekOf(new Date());
-    currentMonthYear = new Date();
-    populateTimeSelects();
-    await loadAll();
+    $('loginPage').style.display='none';$('app').classList.add('active');
+    $('userPill').textContent=user+' ('+(role==='admin'?'Admin':'User')+')';
+    weekStart=getWeekOf(new Date());currentMonthYear=new Date();
+    $('teamDate').value=dateStr(new Date());
+    populateTimeSelects();await loadAll();
 }
 
 // ===== INIT =====
 function init() {
-    $('loginBtn').addEventListener('click', login);
-    $('loginPass').addEventListener('keypress', e => { if(e.key==='Enter') login(); });
-    $('logoutBtn').addEventListener('click', logout);
-    $('todayBtn').addEventListener('click', goToday);
-    $('prevBtn').addEventListener('click', goPrev);
-    $('nextBtn').addEventListener('click', goNext);
-    $('viewWeek').addEventListener('click', () => switchView('week'));
-    $('viewMonth').addEventListener('click', () => switchView('month'));
-    $('mClose').addEventListener('click', closeModal);
-    $('mCancel').addEventListener('click', closeModal);
-    $('mSave').addEventListener('click', savePlan);
-    $('mDelete').addEventListener('click', deletePlan);
-    $('mStart').addEventListener('change', updateHoursDisplay);
-    $('mEnd').addEventListener('change', updateHoursDisplay);
-    $('mClient').addEventListener('change', updateProjectDropdown);
-    $('planModal').addEventListener('click', e => { if(e.target===$('planModal')) closeModal(); });
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') closeModal();
-        if ($('planModal').classList.contains('active')) return;
-        if (e.key === 'ArrowLeft') goPrev();
-        if (e.key === 'ArrowRight') goNext();
+    $('loginBtn').addEventListener('click',login);
+    $('loginPass').addEventListener('keypress',e=>{if(e.key==='Enter')login();});
+    $('logoutBtn').addEventListener('click',logout);
+    $('todayBtn').addEventListener('click',goToday);
+    $('prevBtn').addEventListener('click',goPrev);
+    $('nextBtn').addEventListener('click',goNext);
+    $('viewWeek').addEventListener('click',()=>switchView('week'));
+    $('viewMonth').addEventListener('click',()=>switchView('month'));
+    $('viewTeam').addEventListener('click',()=>switchView('team'));
+    $('mClose').addEventListener('click',closeModal);
+    $('mCancel').addEventListener('click',closeModal);
+    $('mSave').addEventListener('click',savePlan);
+    $('mDelete').addEventListener('click',deletePlan);
+    $('mStart').addEventListener('change',updateHoursDisplay);
+    $('mEnd').addEventListener('change',updateHoursDisplay);
+    $('mClient').addEventListener('change',updateProjectDropdown);
+    $('planModal').addEventListener('click',e=>{if(e.target===$('planModal'))closeModal();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();if($('planModal').classList.contains('active'))return;if(currentView!=='team'){if(e.key==='ArrowLeft')goPrev();if(e.key==='ArrowRight')goNext();}});
+    
+    // Team date picker
+    $('teamDate').addEventListener('change', () => {
+        const d = $('teamDate').value;
+        if (d) loadTeamPlans(d);
     });
 
-    // Session
-    const su = sessionStorage.getItem('cu'), sr = sessionStorage.getItem('cr');
-    if (su && sr) { user = su; role = sr; showApp(); }
+    const su=sessionStorage.getItem('cu'),sr=sessionStorage.getItem('cr');
+    if(su&&sr){user=su;role=sr;showApp();}
 }
-
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded',init);
 })();
 </script>
 </body>
