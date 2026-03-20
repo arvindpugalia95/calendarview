@@ -370,10 +370,43 @@ async function loadTeamPlans(dateFilter) {
     try {
         const r = await (await fetch(GAS+'?action=getAllApprovedPlans&t='+Date.now())).json();
         if (r.status === 'success') {
+            // First pass: collect raw plans for this date
+            const rawPlans = [];
             (r.plans||[]).forEach(p => {
-                const np = normPlan(p, 'Approved');
-                np.submittedBy = p.submittedBy || '';
-                if (np.dateStr === dateFilter) teamPlans.push(np);
+                let ds = p.date;
+                if(!/^\d{4}-\d{2}-\d{2}$/.test(ds)){try{const d=new Date(ds);if(!isNaN(d))ds=d.getFullYear()+'-'+S(d.getMonth()+1)+'-'+S(d.getDate());}catch(e){}}
+                if (ds === dateFilter) rawPlans.push({...p, date: ds});
+            });
+            
+            // Second pass: normalize with per-member stacking
+            const memberStacks = {}; // tracks end-time per member for stacking
+            rawPlans.forEach(p => {
+                const member = p.submittedBy || 'Unknown';
+                const hrs = parseFloat(p.plannedHours) || 1;
+                let sh = 9, sm = 0, eh, em;
+                const tmatch = (p.activity||'').match(/\[(\d{1,2}):(\d{2})\s*-\s*(\d{1,2}):(\d{2})\]/);
+                if (tmatch) {
+                    sh = parseInt(tmatch[1]); sm = parseInt(tmatch[2]);
+                    eh = parseInt(tmatch[3]); em = parseInt(tmatch[4]);
+                } else {
+                    // Stack: start after previous plan for this member
+                    const prevEnd = memberStacks[member] || (9 * 60);
+                    sh = Math.floor(prevEnd / 60); sm = prevEnd % 60;
+                    const endMin = sh * 60 + sm + hrs * 60;
+                    eh = Math.floor(endMin / 60); em = endMin % 60;
+                }
+                if (eh > END_HOUR) { eh = END_HOUR; em = 0; }
+                // Track this member's latest end time
+                memberStacks[member] = Math.max(memberStacks[member] || 0, eh * 60 + em);
+                
+                teamPlans.push({
+                    dateStr: p.date, client: p.client, project: p.project,
+                    activity: (p.activity||'').replace(/\[\d{1,2}:\d{2}\s*-\s*\d{1,2}:\d{2}\]\s*/, ''),
+                    plannedHours: hrs, type: p.type||'Recurring',
+                    admin: p.admin||'', startH: sh, startM: sm, endH: eh, endM: em,
+                    status: 'Approved', planId: p.planId||'', rowIndex: null,
+                    submittedBy: member
+                });
             });
         }
     } catch(e) { console.error('loadTeamPlans', e); }
